@@ -26,11 +26,11 @@ pub const DEFAULT_STYLE: Style = Style::new().fg(Color::White);
 pub fn render<B: Backend>(app: &mut App, frame: &mut Frame<'_, B>) {
     let chunks = Layout::default()
         .direction(Direction::Horizontal)
-        .constraints([Constraint::Length(app.sidebar_size()), Constraint::Min(0)].as_ref())
+        .constraints([Constraint::Min(0)].as_ref())
         .split(frame.size());
 
-    sidebar(app, frame, chunks[0]);
-    mainbar(app, frame, chunks[1]);
+    // sidebar(app, frame, chunks[0]);
+    mainbar(app, frame, chunks[0]);
 }
 
 pub fn sidebar<B: Backend>(app: &mut App, frame: &mut Frame<'_, B>, area: Rect) {
@@ -55,22 +55,22 @@ pub fn sidebar<B: Backend>(app: &mut App, frame: &mut Frame<'_, B>, area: Rect) 
 pub fn mainbar<B: Backend>(app: &mut App, frame: &mut Frame<'_, B>, area: Rect) {
     let chunks = Layout::default()
         .direction(Direction::Vertical)
-        .constraints([Constraint::Min(3), Constraint::Min(3), Constraint::Min(7)].as_ref())
+        .constraints([Constraint::Min(3), Constraint::Min(7)].as_ref())
         .split(area);
 
-    let direction = match chunks[2].height > 25 {
+    let direction = match chunks[1].height > 25 {
         true => Direction::Vertical,
         false => Direction::Horizontal,
     };
     let lower_chunks = Layout::default()
         .direction(direction)
         .constraints([Constraint::Ratio(1, 2), Constraint::Ratio(1, 2)].as_ref())
-        .split(chunks[2]);
+        .split(chunks[1]);
 
-    tabs(app, frame, chunks[0]);
+    // tabs(app, frame, chunks[0]);
     requestbar(app, frame, lower_chunks[0]);
     responsebar(app, frame, lower_chunks[1]);
-    urlbar(app, frame, chunks[1]);
+    urlbar(app, frame, chunks[0]);
 }
 
 pub fn tabs<B: Backend>(app: &mut App, frame: &mut Frame<'_, B>, area: Rect) {

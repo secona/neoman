@@ -21,9 +21,9 @@ pub async fn handle_key_events(key_event: KeyEvent, app: &mut App) -> AppResult<
         }
 
         KeyCode::Esc | KeyCode::Char('q') => {
-            if !app.urlbar.method_menu.is_open() {
-                app.quit();
-            }
+            // if !app.urlbar.method_menu.is_open() {
+            //     app.quit();
+            // }
         }
 
         KeyCode::Tab | KeyCode::Char('.') | KeyCode::Char(']') => {
