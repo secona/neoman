@@ -51,9 +51,9 @@ impl EventHandler {
                             CrosstermEvent::Resize(w, h) => sender.send(Event::Resize(w, h)),
                             // TODO: Unimplemented
                             e => {
-                              tracing::debug!("event not implemented: {:#?}", e);
-                              Ok(())
-                          },
+                                tracing::debug!("event not implemented: {:#?}", e);
+                                Ok(())
+                            }
                         }
                         .expect("failed to send terminal event")
                     }

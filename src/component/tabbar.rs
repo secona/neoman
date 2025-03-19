@@ -33,5 +33,4 @@ impl TabBar {
     pub fn add(&mut self, item: Item) {
         self.tabs.push(item);
     }
-
 }

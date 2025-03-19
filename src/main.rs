@@ -2,9 +2,9 @@ use neoman::app::{App, AppResult};
 use neoman::event::{Event, EventHandler};
 use neoman::handler::handle_key_events;
 use neoman::tui::Tui;
-use std::io;
 use ratatui::backend::CrosstermBackend;
 use ratatui::Terminal;
+use std::io;
 
 #[tokio::main]
 async fn main() -> AppResult<()> {
