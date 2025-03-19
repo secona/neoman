@@ -1,6 +1,5 @@
 use neoman::app::{App, AppResult};
 use neoman::event::{Event, EventHandler};
-use neoman::handler::handle_key_events;
 use neoman::tui::Tui;
 use ratatui::backend::CrosstermBackend;
 use ratatui::Terminal;
@@ -28,7 +27,7 @@ async fn main() -> AppResult<()> {
         // Handle events.
         match tui.events.next()? {
             Event::Tick => app.tick(),
-            Event::Key(key_event) => handle_key_events(key_event, &mut app).await?,
+            Event::Key(key_event) => app.handle_key_events(key_event).await?,
             Event::Mouse(_) => {}
             Event::Resize(_, _) => {}
         }
